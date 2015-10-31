@@ -1,0 +1,10 @@
+module Sync {
+  interface SyncCallback {
+    oneway void callback(in long random);
+  };
+
+  interface Sync {
+    oneway void getRandomNumberAsync(in SyncCallback ref);
+    long getRandomNumber();
+  };
+};

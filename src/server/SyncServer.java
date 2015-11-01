@@ -1,3 +1,10 @@
+/*
+  SENG3400
+  Assignment 3
+  Simon Hartcher
+  C3185790
+ */
+
 import SyncApp.*;
 import org.omg.CORBA.*;
 import org.omg.PortableServer.*;
@@ -7,7 +14,10 @@ import java.util.concurrent.ThreadLocalRandom;
 public class SyncServer {
   public static void main(String[] args) {
     try {
+      //get the server connection
       ORB server = getServer(args);
+
+      //run it
       server.run();
     }
     catch (Exception e) {
@@ -17,9 +27,11 @@ public class SyncServer {
   }
 
   public static ORB getServer(String[] args) {
+    //init
     ORB orb = ORB.init(args, null);
 
     try {
+      //bootstrap
       POA rootpoa = POAHelper.narrow(orb.resolve_initial_references("RootPOA"));
       rootpoa.the_POAManager().activate();
 
@@ -50,17 +62,20 @@ public class SyncServer {
 class SyncServant extends SyncPOA {
   private final int minSleep = 1000;
   private final int maxSleep = 5000;
-  private final int randMin = 1;
-  private final int randMax = 100;
+  private final int randMin  = 1;
+  private final int randMax  = 100;
 
   public int getRandomNumber() {
+    //get random millis to sleep for
     int randSleepTime = ThreadLocalRandom
       .current()
       .nextInt(minSleep, maxSleep + 1);
 
+    //sleep thread
     try { Thread.sleep(randSleepTime); }
     catch (InterruptedException e) { }
 
+    //return random number
     return ThreadLocalRandom.current().nextInt(randMin, randMax + 1);
   }
 

@@ -5,7 +5,7 @@
 
 1. Generate IDL (`src/`)
 
-```	
+```
 idlj -td client -fall sync.idl
 idlj -td server -fall sync.idl
 ```
@@ -34,3 +34,11 @@ java SyncServer
 java SyncClient -SyncMode deferred
 java SyncClient -SyncMode async
 ```
+
+### Notes
+
+The deferred client will always end after 15 ticks, as the client will block on
+the 10th tick until we can assign a new value, before doing the final five ticks.
+
+The async client will end somewhere on or after 10 ticks depending on the server.
+When the value changes, the final five ticks counts down before ending.

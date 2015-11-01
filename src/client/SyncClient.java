@@ -113,24 +113,25 @@ public class SyncClient {
     int       count     = 0;
     final int sleepTime = 500,
               query     = 5,
-              sync      = 10;
+              sync      = 10,
+              end       = 15;
 
     boolean done = false;
     while (!done) {
-      System.out.println("Tick: " + (count++));
-      System.out.println("Value: " + this.privateField);
-
       Thread.sleep(sleepTime);
 
-      if (count >= 50) {
+      System.out.println("Tick: " + (++count));
+      System.out.println("Value: " + this.privateField);
+
+      if (count == end) {
         done = true;
       }
 
-      if (count % query == 0) {
+      if (count == query) {
         request.send_deferred();
       }
 
-      if (count % sync == 0) {
+      if (count == sync) {
         //spin until we receive a response
         while (!request.poll_response()) { }
 
@@ -141,22 +142,27 @@ public class SyncClient {
   }
 
   private void runAsync() throws InterruptedException {
-    int       count     = 0;
+    int       count     = 0,
+              endCount  = 5;
     final int sleepTime = 500,
               query     = 5;
-    boolean done = false;
+    boolean   done      = false;
 
     while (!done) {
-      System.out.println("Tick: " + (count++));
-      System.out.println("Value: " + this.privateField);
-
       Thread.sleep(sleepTime);
 
-      if (count >= 50) {
+      System.out.println("Tick: " + (++count));
+      System.out.println("Value: " + this.privateField);
+
+      if (this.privateField != 200) {
+        endCount--;
+      }
+
+      if (endCount == 0) {
         done = true;
       }
 
-      if (count % query == 0) {
+      if (count == query) {
         service.getRandomNumberAsync(callback);
       }
     }

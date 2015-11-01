@@ -12,6 +12,7 @@ build-client:
 
 clean:
 	$(MAKE) clean -C server
+	$(MAKE) clean -C client
 
 run-server:
 	$(MAKE) run -C server

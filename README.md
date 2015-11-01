@@ -1,7 +1,13 @@
 # SENG3400 - Assignment 3
 ## Simon Hartcher - C3185790
 
-### Instructions
+### Usage Instructions
+
+#### a) Build using Makefile
+
+  Run `make` from the `src/` directory
+
+#### b) Manually
 
 1. Generate IDL (`src/`)
 
@@ -24,13 +30,15 @@
   javac *.java SyncApp/*.java
   ```
 
-4. Start server (assuming orb daemon is running) (`src/server/`)
+### Running
+
+1. Start server (assuming orb daemon is running) (`src/server/`)
 
   ```
   java SyncServer
   ```
 
-5. Run clients (`src/client/`)
+2. Run clients (`src/client/`)
 
   ```
   java SyncClient -SyncMode deferred

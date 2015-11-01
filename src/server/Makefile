@@ -10,4 +10,4 @@ clean:
 	$(RM) -r SyncApp *.class
 
 run:
-	java SyncServer -ORBInitialHost localhost -ORBInitialPort 2015
+	java SyncServer

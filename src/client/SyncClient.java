@@ -129,7 +129,8 @@ public class SyncClient {
       if (count % query == 0) {
         request.send_deferred();
       }
-      else if (count % sync == 0) {
+
+      if (count % sync == 0) {
         //spin until we receive a response
         while (!request.poll_response()) { }
 
@@ -170,6 +171,6 @@ class SyncCallbackDecorator extends SyncCallbackPOA {
   }
 
   public void callback(int rand) {
-    System.out.println(rand);
+    _client.setPrivateField(rand);
   }
 }

@@ -10,7 +10,7 @@ clean:
 	$(RM) -r SyncApp *.class
 
 run-deferred:
-	java SyncClient -SyncMode deferred -ORBInitialHost localhost -ORBInitialPort 2015
+	java SyncClient -SyncMode deferred
 
 run-async:
-	java SyncClient -SyncMode async -ORBInitialHost localhost -ORBInitialPort 2015
+	java SyncClient -SyncMode async

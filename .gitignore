@@ -13,3 +13,5 @@ hs_err_pid*
 
 src/client/SyncApp/
 src/server/SyncApp/
+
+orb.db/

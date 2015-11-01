@@ -7,7 +7,7 @@
 
   Run `make` from the `src/` directory
 
-#### b) Manually
+#### b) Build Manually
 
 1. Generate IDL (`src/`)
 

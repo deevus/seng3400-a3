@@ -5,6 +5,8 @@
 
 1. Generate IDL (`src/`)
 
+Note that we use the `-fall` flag as the helper classes are required in the implementation.
+
 ```
 idlj -td client -fall sync.idl
 idlj -td server -fall sync.idl
